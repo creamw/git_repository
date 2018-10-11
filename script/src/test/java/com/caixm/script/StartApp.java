@@ -30,7 +30,7 @@ public class StartApp {
 	@Test
 	public void boot() throws MalformedURLException, InterruptedException{
        DesiredCapabilities capabilities = new DesiredCapabilities();  
-       capabilities.setCapability("udid", "192.168.1.100:5555");
+       capabilities.setCapability("udid", "192.168.1.143:5555");
        capabilities.setCapability("deviceName","nubia Z11"); 
      //capabilities.setCapability("deviceName", "test_device");
      //capabilities.setCapability("deviceName", "test_device");

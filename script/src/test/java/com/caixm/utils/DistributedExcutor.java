@@ -1,4 +1,4 @@
-package com.caixm.script;
+package com.caixm.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,14 +19,11 @@ import org.junit.runner.Result;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.caixm.utils.TestExcutor;
-import com.caixm.utils.TestExcutorT1;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-public class Demo {
+public class DistributedExcutor {
 	private AndroidDriver driver;
 	private static ThreadPoolExecutor executPool;
 
@@ -122,14 +119,14 @@ public class Demo {
 		new Thread(new Runnable() {
 			
 			public void run() {
-				// TODO Auto-generated method stub
+				
 				try {
 					boot();
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -138,14 +135,14 @@ public class Demo {
 		new Thread(new Runnable() {
 			
 			public void run() {
-				// TODO Auto-generated method stub
+				
 				try {
 					initDriver();
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -164,7 +161,7 @@ public class Demo {
 		new Thread(new Runnable() {
 
 			public void run() {
-				// TODO Auto-generated method stub
+				
 				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 				BufferedReader bf = new BufferedReader(inputStreamReader);
 				// BufferedReader bf = new BufferedReader(new InputStreamReader(inputStream));
@@ -175,20 +172,20 @@ public class Demo {
 						System.out.println(str);
 					}
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
+					
 					e2.printStackTrace();
 				}
 				try {
 					System.out.println(456);
 					inputStreamReader.close();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 				try {
 					bf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -209,13 +206,13 @@ public class Demo {
 
 	}
 	
-	public static void main(String... args) {
+	@Test
+	public void excute()throws InterruptedException {
 		
 		getThreadPool();
 		executPool.execute(new Runnable() {
 			
 			public void run() {
-				// TODO Auto-generated method stub
 				Thread.currentThread().setName("T");
 				JUnitCore.runClasses(TestExcutor.class);
 			}
@@ -224,11 +221,12 @@ public class Demo {
 		executPool.execute(new Runnable() {
 			
 			public void run() {
-				// TODO Auto-generated method stub
 				Thread.currentThread().setName("T1");
 				JUnitCore.runClasses(TestExcutorT1.class);
 			}
 		});
+		CountDownLatch countDownLatch = new CountDownLatch(4);
+		countDownLatch.await();
 		/*JUnitCore.runClasses(StartApp.class);
 		new Thread(new Runnable() {
 			
