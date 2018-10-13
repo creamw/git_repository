@@ -218,11 +218,19 @@ public class DistributedExcutor {
 			}
 		});
 		
-		executPool.execute(new Runnable() {
+		/*executPool.execute(new Runnable() {
 			
 			public void run() {
 				Thread.currentThread().setName("T1");
 				JUnitCore.runClasses(TestExcutorT1.class);
+			}
+		});*/
+		
+		executPool.execute(new Runnable() {
+			
+			public void run() {
+				Thread.currentThread().setName("T2");
+				JUnitCore.runClasses(TestExcutorT2.class);
 			}
 		});
 		CountDownLatch countDownLatch = new CountDownLatch(4);

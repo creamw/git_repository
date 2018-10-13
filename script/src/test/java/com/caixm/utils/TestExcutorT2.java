@@ -10,6 +10,6 @@ import com.caixm.scriptT2.StartAppT2;
 
 @RunWith(Suite.class)
 @SuiteClasses({StartAppT2.class,LoginT2.class,PrintTestT2.class})
-public class DebugExcutor {
+public class TestExcutorT2 {
 
 }
