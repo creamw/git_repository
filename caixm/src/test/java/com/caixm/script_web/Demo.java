@@ -1,7 +1,8 @@
-package com.caixm;
+package com.caixm.script_web;
 
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -43,6 +44,17 @@ public class Demo {
 		//ImagePath.add("res\\chrome.jpg");
 		s.click("res\\\\chrome.jpg");
 		
+		
+	}
+	
+	@Test
+	public void getUUID() {
+		int a = 0;
+		while(a<100) {
+			UUID uuid = UUID.randomUUID();
+			System.out.println(uuid);
+			a++;
+		}
 		
 	}
 }
